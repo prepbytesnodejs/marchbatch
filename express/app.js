@@ -1,7 +1,9 @@
 // express is a node js frameowrk for creating http servers
 
 const express=require("express");// requiring th express module
+const cors=require("cors");
 const app=express();  // creating app object by calling the express function 
+app.use(cors());
 
 app.get("/",function(req,res){
 
@@ -22,7 +24,7 @@ app.get("/data",function(req,res){
    // res.send("hello people"); // res.write or res.end 
    //res.write("hey");res.end();
    res.send({
-    message:"Data people"
+    message:"I am coming from backend............"
    })
 
 })
