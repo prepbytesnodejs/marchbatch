@@ -4,9 +4,14 @@ const express=require("express");// requiring th express module
 const cors=require("cors");
 const app=express();  // creating app object by calling the express function 
 app.use(cors());//middlewARE
+const fs=require("fs");
+const e = require("express");
 
 app.use(express.json());  //middleware
 app.use(express.urlencoded({extended:true}));
+const path=require("path");
+const authrouter=require("./routes/auth.routes");
+
 
 const userdata=[];
 
@@ -40,9 +45,10 @@ app.get("/data",function(req,res){
 
 app.post("/post",function(req,res){
     //the post request data that is sent by the client is available
-
+     console.log(req.headers);
+     console.log(req.body);
     //console.log(req.body);
-    console.log(req.query);
+   // console.log(req.query);
 
     userdata.push(req.body);
 
@@ -88,6 +94,53 @@ app.get("/url/:name/:id/:age",function(req,res){
     })
 
 })
+
+//All about headers 
+
+app.post("/headers",function(req,res){
+    ///console.log(req.headers);
+
+
+    res.json({
+        message:"Success"
+    })
+
+
+
+})
+
+
+// Sending html   
+
+app.get("/htmldata",(req,res)=>{
+
+    fs.readFile("./html/home.html",'utf-8',function(err,data){
+     
+        if(!err){
+            res.send(data);
+        }
+        else{
+            res.send("File Not found");
+        }
+    })
+
+  
+
+
+
+})
+
+
+// Sending html file using express
+
+app.get("/htmlfile",function(req,res){
+    //console.log(");
+    res.sendFile(path.join(__dirname,"/html/dashboard.html"));
+
+})
+
+app.use("/auth",authrouter);
+
 
 
 app.listen(9090,function(){
