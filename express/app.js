@@ -11,6 +11,10 @@ app.use(express.json());  //middleware
 app.use(express.urlencoded({extended:true}));
 const path=require("path");
 const authrouter=require("./routes/auth.routes");
+const {appLevelMiddleware} =require("./middlewares/middleware");
+
+app.use(appLevelMiddleware);
+
 
 
 const userdata=[];
