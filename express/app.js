@@ -11,6 +11,7 @@ app.use(express.json());  //middleware
 app.use(express.urlencoded({extended:true}));
 const path=require("path");
 const authrouter=require("./routes/auth.routes");
+const jwtrouter=require("./routes/jwt.routes");
 const {appLevelMiddleware} =require("./middlewares/middleware");
 
 app.use(appLevelMiddleware);
@@ -144,6 +145,9 @@ app.get("/htmlfile",function(req,res){
 })
 
 app.use("/auth",authrouter);
+
+
+app.use("/jwt",jwtrouter);
 
 
 

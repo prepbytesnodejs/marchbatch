@@ -1,3 +1,6 @@
+//middlewares are very much useful for separating the sequential jobs
+
+
 function log(req,res,next){
 
     console.log("midleware hit");

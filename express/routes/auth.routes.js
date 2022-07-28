@@ -1,6 +1,9 @@
 const express=require("express");
+const signupusers = require("../db");
+const encryptPassword = require("../middlewares/encryptpasswordmiddleware");
 const router=express.Router();
 const {log,log2,routeLog}=require("../middlewares/middleware");
+
 
 // routes level middleware
 
@@ -10,7 +13,30 @@ const {log,log2,routeLog}=require("../middlewares/middleware");
 //crud operation
 
 
-router.use(routeLog);
+//router.use(routeLog);
+
+
+
+//POST ROUTE
+router.post("/signup",encryptPassword,function(req,res){
+
+  signupusers.push(req.body);
+  res.json({
+    message:"Hey you are registered",
+    hashedPAssword:req.body.password  //hashsed password recevd from middleware
+  });
+})
+
+//GET ROUTE
+
+router.get("/data",function(req,res){
+
+
+  res.json({
+    message:"success",
+    data:signup
+  });
+})
 
 
 
