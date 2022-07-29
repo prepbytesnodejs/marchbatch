@@ -12,6 +12,7 @@ app.use(express.urlencoded({extended:true}));
 const path=require("path");
 const authrouter=require("./routes/auth.routes");
 const jwtrouter=require("./routes/jwt.routes");
+const crudRouter=require("./routes/crud.routes");
 const {appLevelMiddleware} =require("./middlewares/middleware");
 
 app.use(appLevelMiddleware);
@@ -148,6 +149,8 @@ app.use("/auth",authrouter);
 
 
 app.use("/jwt",jwtrouter);
+
+app.use("/crud",crudRouter);
 
 
 
