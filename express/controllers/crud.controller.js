@@ -1,4 +1,4 @@
-const {addDataToDb,getDataFromDb,deleteDataInDb}=require("../db");
+const {addDataToDb,getDataFromDb,deleteDataInDb,updateDataIndb}=require("../db");
 
 const createData=(req,res)=>{
     // Out business logic will go in here
@@ -12,8 +12,17 @@ const createData=(req,res)=>{
 
 
 const updateData=(req,res)=>{
+    
+    updateDataIndb(req.body);
+
+    res.send("Edit request received");
     // Out business logic will go in here
 }
+
+
+// Modal methods
+
+
 
 
 const getData=(req,res)=>{

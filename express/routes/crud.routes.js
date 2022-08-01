@@ -2,12 +2,12 @@ const { application } = require("express");
 const express=require("express");
 const router=express.Router();
 const {createData,getData,updateData,deleteData}=require("../controllers/crud.controller");
-
+const authorize=require("../middlewares/authorization.middleware");
 //Create Route
 
 router.post("/",createData);
 
-router.get("/",getData);
+router.get("/",authorize,getData);
 
 router.put("/",updateData);
 

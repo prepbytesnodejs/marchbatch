@@ -6,6 +6,16 @@ let  signupusers=[
 ];
 
 
+const searchByEmail=(email)=>{
+    const isthere=signupusers.filter(function(ele){
+        return email==ele.email;
+
+    })
+return isthere.length>0;
+
+}
+
+
 const addDataToDb=(data)=>{
     data.id=uuidv4();
 
@@ -20,7 +30,11 @@ const getDataFromDb=()=>{
 }
 
 
-const updateDataIndb=(data,id)=>{
+const updateDataIndb=(data)=>{
+    //  Logic for updation --->
+    signupusers=signupusers.filter(ele=>ele.id!=data.id) ; 
+    signupusers.push(data);  
+    
     
 }
 
@@ -54,7 +68,8 @@ module.exports={
     addDataToDb,
     getDataFromDb,
     updateDataIndb,
-    deleteDataInDb
+    deleteDataInDb,
+    searchByEmail
 
 
 };

@@ -1,6 +1,7 @@
 const express=require("express");
 const signupusers = require("../db");
 var jwt = require('jsonwebtoken');
+const {searchByEmail} =require("../db");
 
 
 
@@ -13,20 +14,18 @@ router.post("/login",function(req,res){
     console.log(signupusers);
     const email=req.body.email;
 
-    const isthere=signupusers.filter(function(ele){
-        return email==ele.email;
 
-    })
-
+    const isthere=searchByEmail(email);
+  
 
 
 
-    if(isthere.length>0){
+    if(isthere){
 
         // generating a token and send to the client
 
 
-    jwt.sign(isthere[0], "privateKey", function(err, token) {
+    jwt.sign(req.body, "privateKey", function(err, token) {
 
         res.json({
             message:"Success",
